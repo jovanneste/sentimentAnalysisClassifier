@@ -7,7 +7,7 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.linear_model import LogisticRegression
 
 print("Loading data...")
-data = pd.read_csv('training.1600000.processed.noemoticon.csv')
+data = pd.read_csv('subset.csv')
 
 p_train = float(input("Training data split (0-1): "))
 random_training_data = data.sample(frac=1)
