@@ -1,11 +1,5 @@
 import pickle
 
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import fbeta_score
 
 nb_model = pickle.load(open('nb_model.sav', 'rb'))
 logr_model = pickle.load(open('logr_model.sav', 'rb'))

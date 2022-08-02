@@ -7,6 +7,7 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.linear_model import LogisticRegression
 
 print("Loading data...")
+
 data = pd.read_csv('subset.csv')
 
 p_train = float(input("Training data split (0-1): "))
@@ -51,7 +52,7 @@ train_labels = train_data['target']
 
 test_features = one_hot_vectorizer.transform(test_data['text'])
 test_labels = test_data['target']
-
+pickle.dump(test_labels, open('test_labels.sav', 'wb'))
 
 pickle.dump(train_features, open('train_features.sav', 'wb'))
 pickle.dump(train_labels, open('train_labels.sav', 'wb'))
@@ -65,5 +66,7 @@ pickle.dump(nb_model, open('nb_model.sav', 'wb'))
 logr = LogisticRegression(solver='saga')
 logr_model = logr.fit(train_features, train_labels)
 pickle.dump(logr_model, open('logr_model.sav', 'wb'))
+
+pickle.dump(one_hot_vectorizer, open('one_hot_vectorizer.sav', 'wb'))
 
 print("Model trained (LR and Bayes)")
