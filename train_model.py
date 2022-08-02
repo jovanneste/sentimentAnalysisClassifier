@@ -8,7 +8,17 @@ from sklearn.linear_model import LogisticRegression
 
 print("Loading data...")
 
-data = pd.read_csv('subset.csv')
+data = pd.read_csv('training.1600000.processed.noemoticon.csv')
+
+user_n = int(input("How many tweets (max 1.6M): "))
+
+data = data.sample(n=user_n)
+data.columns = ['target','id','date','flag','user','text']
+
+
+
+# saving the dataframe
+data.to_csv('data.csv', index=False)
 
 p_train = float(input("Training data split (0-1): "))
 random_training_data = data.sample(frac=1)
@@ -46,12 +56,14 @@ def text_pipeline_spacy(text):
 print("Training model...")
 
 one_hot_vectorizer = CountVectorizer(tokenizer=text_pipeline_spacy, binary=True)
-
+print("Training features")
 train_features = one_hot_vectorizer.fit_transform(train_data['text'])
 train_labels = train_data['target']
-
+print("Testing features")
 test_features = one_hot_vectorizer.transform(test_data['text'])
 test_labels = test_data['target']
+
+print("Dumping...")
 pickle.dump(test_labels, open('test_labels.sav', 'wb'))
 
 pickle.dump(train_features, open('train_features.sav', 'wb'))

@@ -24,8 +24,17 @@ one_hot_vectorizer = pickle.load(open('one_hot_vectorizer.sav', 'rb'))
 sentence = input("Enter sentence: ")
 sentence_features = one_hot_vectorizer.transform([sentence])
 
-predictionLR = logr_model.predict(sentence_features)
-predictionNB = nb_model.predict(sentence_features)
+predictionLR = int(logr_model.predict(sentence_features))
+predictionNB = int(nb_model.predict(sentence_features))
 
-print("LR prediction: " + str(predictionLR))
-print("NB prediction: " + str(predictionNB))
+#print("LR prediction: " + str(predictionLR))
+#print("NB prediction: " + str(predictionNB))
+
+prediction = (predictionLR+predictionNB)//2
+
+if prediction==0:
+    print("Negative sentiment")
+elif prediction==4:
+    print("Positive sentiment")
+else:
+    print("Neutral sentiment")
