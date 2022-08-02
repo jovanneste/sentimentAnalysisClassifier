@@ -36,7 +36,7 @@ def predict(sentence):
     elif prediction==4:
         return "Positive sentiment"
     else:
-        return "Neutral sentiment"
+        return ("Neutral sentiment LR- " + str(predictionLR))
 
 
 window = Tk()
@@ -44,7 +44,7 @@ window = Tk()
 window.title("Sentiment Analysis Predictor")
 window.geometry('450x300')
 
-lbl1 = Label(window, text="Enter sentence below", font=("Arial", 15))
+lbl1 = Label(window, text="Enter a sentence below", font=("Arial", 15))
 lbl1.grid(column=100, row=0)
 
 lbl2 = Label(window, text="", font=("Arial", 20))
