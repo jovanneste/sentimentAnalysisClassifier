@@ -59,6 +59,9 @@ def clicked():
     print(predicted_sentiment)
     lbl2.configure(text=predicted_sentiment)
 
+del_btn = Button(window, text='Clear', command=lambda: txt.delete(0, END))
+del_btn.grid(column=100, row=450)
+
 btn1 = Button(window, text="Okay", command=clicked)
 btn1.grid(column=100, row=150)
 
